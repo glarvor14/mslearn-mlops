@@ -32,7 +32,15 @@ jobs:
     name: pytest
     runs-on: ubuntu-latest
     steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Use Python version 3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.8'     
     - name: setup Pytest envs
       run:
         pip install -r requirements.txt
+    - name: Run unitary test
+      run:
         pytest tests/test_train.py
