@@ -13,7 +13,6 @@ import mlflow
 
 # define functions
 def main(args):
-    
     mlflow.autolog()
 
     # read data
@@ -34,9 +33,13 @@ def get_csvs_df(path):
         raise RuntimeError(f"No CSV files found in provided data path: {path}")
     return pd.concat((pd.read_csv(f) for f in csv_files), sort=False)
 
+
 def split_data(df):
-    X, y = df[['Pregnancies','PlasmaGlucose','DiastolicBloodPressure','TricepsThickness','SerumInsulin','BMI','DiabetesPedigree','Age']].values, df['Diabetic'].values
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=0)
+    X, y = df['Pregnancies', 'PlasmaGlucose', 'DiastolicBloodPressure',
+              + 'TricepsThickness', 'SerumInsulin', 'BMI',
+                + 'DiabetesPedigree', 'Age'].values, df['Diabetic'].values
+    X_train, X_test, y_train, y_test = \
+        + train_test_split(X, y, test_size=0.30, random_state=0)
     return X_train, X_test, y_train, y_test
 
 
@@ -60,6 +63,7 @@ def parse_args():
 
     # return args
     return args
+
 
 # run script
 if __name__ == "__main__":
