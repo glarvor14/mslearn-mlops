@@ -32,7 +32,7 @@ jobs:
     name: pytest
     runs-on: ubuntu-latest
     steps:
-    - name: setup Pytest env
+    - name: setup Pytest envs
       run:
         pip install -r requirements.txt
         pytest tests/
